@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">PeerToPeerMessage</string>
+    <string name="app_name">Peer To Peer Message</string>
+    <string name="email">Email Address write...</string>
+    <string name="passwd">Personel password write ...</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="google_signin">Google SignIn</string>
+    <string name="telephone">Google SignIn</string>
 </resources>
