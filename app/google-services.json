@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "589531311068",
+    "project_id": "peertopeermessage",
+    "storage_bucket": "peertopeermessage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589531311068:android:0c13aacc22eca6acc7bd19",
+        "android_client_info": {
+          "package_name": "com.hamitmizrak.peertopeermessage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589531311068-9ftcvbg9qkgob6i9872t9r7dp9mdcsiv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hamitmizrak.peertopeermessage",
+            "certificate_hash": "2b7091767dd94968a8cce4d93056cac5abcb09fe"
+          }
+        },
+        {
+          "client_id": "589531311068-g5o405qaqg57nmi5adb5hhrrkeq7jbhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPGJ70GocY-jnGuYpuAaNsU5Is8O9JoAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589531311068-g5o405qaqg57nmi5adb5hhrrkeq7jbhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
