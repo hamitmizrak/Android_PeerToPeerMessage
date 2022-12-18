@@ -121,6 +121,17 @@ public class MainActivity extends AppCompatActivity {
             }// end onClick
         });// end setOnClickListener
 
+        //Register Button
+        main_button_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Google sayfasına gitmesi için
+                Intent registerIntent=new Intent(getApplicationContext(),RegisterActivity.class);
+                Toast.makeText(MainActivity.this, getString(R.string.register_redirect), Toast.LENGTH_SHORT).show();
+                startActivity(registerIntent);
+            } //end onClick
+        }); //end  main_button_register
+
 
     } //ends codes
 }// class MainActivity
