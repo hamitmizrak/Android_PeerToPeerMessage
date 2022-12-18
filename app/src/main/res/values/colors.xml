@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#2F1DD0</color>
+    <color name="transparent">#7F000000</color>
 </resources>

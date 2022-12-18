@@ -56,13 +56,13 @@
                 android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--button:transparent-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:text="@string/signin"
-            android:background="@color/blue"
-            android:textColor="@color/white"/>
-
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"/>
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>
