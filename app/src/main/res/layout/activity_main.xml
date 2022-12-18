@@ -70,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <!--login-->
                 <Button
                     android:id="@+id/main_button_login"
@@ -81,9 +82,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     />
-                <!--login-->
+
+                <!--register-->
                 <Button
-                    android:id="@+id/main_button_submit"
+                    android:id="@+id/main_button_register"
                     android:layout_width="180dp"
                     android:layout_height="50dp"
                     android:text="@string/register"

@@ -55,6 +55,8 @@ dependencies {
 
     /*material design */
     implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     /*Lombok*/
     compileOnly 'org.projectlombok:lombok:1.18.24'
