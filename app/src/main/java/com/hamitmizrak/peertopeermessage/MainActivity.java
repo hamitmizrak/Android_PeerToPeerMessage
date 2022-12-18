@@ -40,14 +40,15 @@ private FirebaseAuth.AuthStateListener authStateListener;
 protected void onStart() {
        super.onStart();
        //firebaseAuth'a kullanıcı eklemek
-
-
+       firebaseAuth.addAuthStateListener(authStateListener);
 }
 
 //firebaseAuth kullanıcı çıkarmak
 @Override
 protected void onStop() {
        super.onStop();
+       //Firebase kullanıcıyı çıkarmak
+       firebaseAuth.removeAuthStateListener(authStateListener);
 }
 
 //ONCREATE
