@@ -7,4 +7,5 @@
     <string name="google_signin">Google SignIn</string>
     <string name="telephone">Telephone</string>
     <string name="admin_redirect">Admin page Redirect</string>
+    <string name="admin_faile">Admin is not page Redirect</string>
 </resources>
