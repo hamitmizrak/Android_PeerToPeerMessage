@@ -5,6 +5,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="google_signin">Google SignIn</string>
+    <string name="signin">SignIn</string>
     <string name="telephone">Telephone</string>
     <string name="admin_redirect">Admin page Redirect</string>
     <string name="admin_faile">Admin is not page Redirect</string>

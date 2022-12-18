@@ -35,7 +35,8 @@
                 android:background="@color/white"
                 android:textColor="@color/black"
                 android:drawableLeft="@drawable/email_22"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="12dp"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--password ınput-->
@@ -51,8 +52,16 @@
                 android:textColor="@color/black"
                 android:drawableLeft="@drawable/password_22"
                 android:inputType="textPassword"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="12dp"
+                android:padding="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="@string/signin"
+            android:background="@color/blue"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
     </ScrollView>
