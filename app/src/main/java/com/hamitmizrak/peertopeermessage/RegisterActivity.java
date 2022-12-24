@@ -30,6 +30,34 @@ public class RegisterActivity extends AppCompatActivity {
     //Email,password
     private String userEmailAddress, userPassword;
 
+    //Validation Email
+    private Boolean validateEmail(String val){
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if(val.isEmpty()){
+            register_editText_EmailAddress.setError("Email boş geçilemez");
+            return  false;
+        }else if(val.matches(emailPattern)){
+            register_editText_EmailAddress.setError("Email Uygun formatta yazmadınız");
+            return false;
+        }else
+            register_editText_EmailAddress.setError(null);
+        return true;
+    }
+
+    //validation Password
+    private Boolean validatePassword(String val){
+        String passwordVal="";
+        if(val.isEmpty()){
+            register_editText_Password.setError("Şifre boş geçilemez");
+            return  false;
+        }else if(val.matches(passwordVal)){
+            register_editText_Password.setError("Şifre Uygun formatta yazmadınız");
+            return false;
+        }else
+            register_editText_Password.setError(null);
+        return true;
+    }
+
     //ONCREATE
     @Override
     protected void onCreate(Bundle savedInstanceState) {

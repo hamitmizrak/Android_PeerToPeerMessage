@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button main_button_login;
 
     //register
-    Button main_button_register;
+    TextView main_button_register;
 
     //user
     String userEmailAddress, userPassword;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         //Firebase kullanıcıyı çıkarmak
         firebaseAuth.removeAuthStateListener(authStateListener);
     }
+
+
 
     //ONCREATE
     @Override
@@ -131,7 +134,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(registerIntent);
             } //end onClick
         }); //end  main_button_register
-
-
     } //ends codes
 }// class MainActivity
