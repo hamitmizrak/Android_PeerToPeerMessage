@@ -10,4 +10,7 @@
     <string name="admin_redirect">Admin page Redirect</string>
     <string name="admin_faile">Admin is not page Redirect</string>
     <string name="register_redirect">Register page Redirect</string>
+    <string name="login_account">Login Girişi yapıldı</string>
+    <string name="login_faile">Login Girişi yapılamadı</string>
+    <string name="not_register">Üye kayıtı yapılamadı</string>
 </resources>

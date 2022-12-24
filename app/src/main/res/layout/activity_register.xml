@@ -58,6 +58,7 @@
 
         <!--button:transparent-->
         <Button
+            android:id="@+id/register_button_submit"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:text="@string/signin"
