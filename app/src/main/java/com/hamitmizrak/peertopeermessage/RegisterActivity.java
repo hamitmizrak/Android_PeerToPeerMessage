@@ -42,15 +42,15 @@ public class RegisterActivity extends AppCompatActivity {
         register_button_submit = findViewById(R.id.register_button_submit);
 
         //Firebase Instance
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         //button onClick
         register_button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Kullanıcının girdiği email ve password almak
-                userEmailAddress =register_editText_EmailAddress.getText().toString();
-                userPassword =register_editText_Password.getText().toString();
+                userEmailAddress = register_editText_EmailAddress.getText().toString();
+                userPassword = register_editText_Password.getText().toString();
                 firebaseAuth.createUserWithEmailAndPassword(userEmailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     //onComplete-1
                     @Override
