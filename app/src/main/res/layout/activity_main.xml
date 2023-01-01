@@ -132,11 +132,11 @@
                     />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_button_telephone"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/cellphone"
-                    android:id="@+id/main_button_telephone"/>
+                    android:src="@drawable/cellphone" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="40dp"

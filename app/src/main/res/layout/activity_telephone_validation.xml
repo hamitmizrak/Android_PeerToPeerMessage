@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".TelephoneValidation">
+
+    <EditText
+        android:id="@+id/phoneNumberEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="90dp"
+        android:hint="Telefonu numaranız +90 xxxyyyzzmm"
+        android:textColor="#ffffff"
+        android:paddingTop="15dp"/>
+
+    <EditText
+        android:id="@+id/phoneCodeEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="20dp"
+        android:hint="TDoğrulama kodunuz"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/confirmationButtonId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Gönder"
+        />
+
+</LinearLayout>

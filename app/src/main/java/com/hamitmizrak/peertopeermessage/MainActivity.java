@@ -30,17 +30,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     //global variable
-    EditText main_editText_email;
-    EditText main_editText_password;
+
+    private CircleImageView main_button_telephone;
+
+    //email password
+    private EditText main_editText_email;
+    private EditText main_editText_password;
 
     //login
-    Button main_button_login;
+    private Button main_button_login;
 
     //register
-    TextView main_button_register;
+    private TextView main_button_register;
 
     //user
-    String userEmailAddress, userPassword;
+    private String userEmailAddress;
+    private String userPassword;
 
     //Firebase User
     private FirebaseUser firebaseUser;
@@ -182,13 +187,13 @@ public class MainActivity extends AppCompatActivity {
 
         //+++++++++++++
         //Google Login
-        main_button_googlesign=findViewById(R.id.main_button_googlesign);
-        gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc=GoogleSignIn.getClient(this,gso);
+        main_button_googlesign = findViewById(R.id.main_button_googlesign);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
 
         //Eğer Google ile sisteme giriş yapılmışsa tekrar giriş yapmasını engellemek
-        GoogleSignInAccount googleSignInAccount=GoogleSignIn.getLastSignedInAccount(this);
-        if(googleSignInAccount!=null){
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (googleSignInAccount != null) {
             navigateToAdminActivity();
         }
 
@@ -200,5 +205,17 @@ public class MainActivity extends AppCompatActivity {
             }//end click
         }); //end setOnClickListener
 
+
+        //telephone Validation
+        main_button_telephone=findViewById(R.id.main_button_telephone);
+        main_button_telephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Telephone Validation
+                Intent registerIntent = new Intent(getApplicationContext(), TelephoneValidation.class);
+                Toast.makeText(MainActivity.this, "Telephone", Toast.LENGTH_SHORT).show();
+                startActivity(registerIntent);
+            } //end onClick
+        }); //end  main_button_register
     } //ends codes
 }// class MainActivity
