@@ -33,6 +33,9 @@ android {
 
 dependencies {
 
+    /*Google Signin integration android */
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+
     /*firebase*/
     /* firebase uygulamada Firebase Assistan ==> email password Authentication Asistans*/
     implementation 'com.google.firebase:firebase-auth:19.2.0'
@@ -47,8 +50,6 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'
 
-    /*Google Signin integration android */
-    implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'

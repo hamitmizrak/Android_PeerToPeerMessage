@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="18dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".MainActivity">
     <!--640-->
 
@@ -14,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
+        <!--main LinearLayout-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,107 +29,123 @@
                 android:id="@+id/main_circleImageView_profile"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/person"/>
 
             <!--email address-->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="@string/email"
+                app:boxBackgroundColor="#FFFFFF"
+                app:endIconCheckable="true"
+                app:endIconDrawable="@android:drawable/ic_input_add"
+                app:endIconMode="custom"
+                app:endIconTint="#0000FF"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/main_editText_email"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:drawableLeft="@drawable/email_22"
-                    android:hint="@string/email"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <!--password address-->
+            <!--edit text password-->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="@string/passwd"
+                app:boxBackgroundColor="#FFFFFF"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#0000FF"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp">
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/main_editText_password"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:drawableLeft="@drawable/password_22"
-                    android:hint="@string/passwd"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:inputType="textPassword"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--login register-->
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:orientation="horizontal">
 
-                <!--login-->
-                <Button
-                    android:id="@+id/main_button_login"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login"
-                    android:background="@color/black"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="5dp"/>
-
-                <!--register-->
-                <TextView
-                    android:id="@+id/main_button_register"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:text="@string/register"
-                    android:background="@color/black"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="-12dp"
-                    android:layout_marginRight="5dp"
-                    />
-            </LinearLayout>
-
-            <!--telephone googlesignin-->
+            <!--Login ve Register button-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--Login button-->
+                <Button
+                    android:id="@+id/main_button_login"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:text="@string/login" />
+
+                <!--forgot password-->
+                <TextView
+                    android:id="@+id/buttonForgotPassword"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="@string/forgot_password"
+                    android:textColor="#FFFFFF" />
+
+                <!--Register Link-->
+                <TextView
+                    android:id="@+id/main_button_register"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/black"
+
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="@string/register"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>  <!--end button-->
+
+
+            <!--google ve telefonla giriş-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <!--telephone-->
-                <Button
-                    android:id="@+id/main_button_telephone"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:text="@string/telephone"
-                    android:background="@color/blue"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    />
-
-                <!--google sign in-->
-                <Button
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/google"
                     android:id="@+id/main_button_googlesign"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:text="@string/google_signin"
-                    android:background="@color/blue"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     />
-            </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/cellphone"
+                    android:id="@+id/main_button_telephone"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/linkedin"
+                    android:id="@+id/socialLinkedinId"/>
+
+            </LinearLayout>  <!--end button-->
+        </LinearLayout> <!--end linearLayout-->
+    </ScrollView><!--end main ScrollView-->
+</RelativeLayout><!--end main RelativeLayout-->
+

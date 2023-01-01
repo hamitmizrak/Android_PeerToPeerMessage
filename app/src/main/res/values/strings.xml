@@ -13,4 +13,5 @@
     <string name="login_account">Login Girişi yapıldı</string>
     <string name="login_faile">Login Girişi yapılamadı</string>
     <string name="not_register">Üye kayıtı yapılamadı</string>
+    <string name="forgot_password">Şifremi Unuttum</string>
 </resources>

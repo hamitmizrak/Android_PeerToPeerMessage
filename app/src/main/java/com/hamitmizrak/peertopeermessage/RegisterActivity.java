@@ -46,7 +46,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     //validation Password
     private Boolean validatePassword(String val){
-        String passwordVal="";
+        String passwordVal="^"+
+                "(?=.*[0-9])"+ //en az 1 tane sayı
+                "(?=.*[a-z])"+ //en az 1 tane harf
+                "(?=.*[@#$%^&+=])"+ //en az 1 tane özel karakter
+                "(?=\\S+$)"+ //no white spaces
+                ".{4,}"+ //en az 4 karakter ve üstünde olması gerekiyor.
+                "$"
+                ;
         if(val.isEmpty()){
             register_editText_Password.setError("Şifre boş geçilemez");
             return  false;
@@ -64,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //start
+
         //id almak
         register_editText_EmailAddress = findViewById(R.id.register_editText_EmailAddress);
         register_editText_Password = findViewById(R.id.register_editText_Password);
