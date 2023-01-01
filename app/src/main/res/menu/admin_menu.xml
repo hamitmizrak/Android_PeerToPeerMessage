@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/adminMenuRefleshId"
+        android:title="Yenile"
+        android:orderInCategory="90"
+        app:showAsAction="ifRoom"/>
+
+    <item
+    android:id="@+id/adminMenuSettingId"
+    android:title="Ayarlar"/>
+
+    <item
+        android:id="@+id/adminMenuLogoutId"
+        android:title="Çıkış"/>
+</menu>
