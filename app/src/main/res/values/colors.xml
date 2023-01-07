@@ -9,4 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#2F1DD0</color>
     <color name="transparent">#7F000000</color>
+
+
+    <!--vki color-->
+    <color name="zayif">#7F4D5B5E</color>
+    <color name="normal">#7F0742D6</color>
+    <color name="normalden_fazla">#7FA8E53D</color>
+    <color name="fazla">#7FF8FF77</color>
+    <color name="obez">#7FCA2C2C</color>
+    <color name="obez_ustu">#7FFC0000</color>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Peer To Peer Message</string>
+    <string name="login">Login</string>
+    <string name="sonuc">Result</string>
+    <string name="boy">Height</string>
+    <string name="kilo">Weight</string>
+    <string name="cinsiyet">Gender</string>
+    <string name="bay">Male</string>
+    <string name="bayan">Female</string>
+    <string name="zayif">Weak</string>
+    <string name="normal">Normal</string>
+    <string name="normalden_fazla">Overweight</string>
+    <string name="fazla">A Little More Weight</string>
+    <string name="obez">Obese</string>
+    <string name="obez_ustu">"+Obese "</string>
+</resources>

@@ -14,4 +14,19 @@
     <string name="login_faile">Login Girişi yapılamadı</string>
     <string name="not_register">Üye kayıtı yapılamadı</string>
     <string name="forgot_password">Şifremi Unuttum</string>
+
+    <!--VKI-->
+    <string name="sonuc">sonuc</string>
+    <string name="boy">boy</string>
+    <string name="kilo">kilo</string>
+    <string name="cinsiyet">cinsiyet</string>
+    <string name="bay">bay</string>
+    <string name="bayan">bayan</string>
+    <string name="zayif">zayif</string>
+    <string name="normal">normal</string>
+    <string name="normalden_fazla">normalden_fazla</string>
+    <string name="fazla">fazla</string>
+    <string name="obez">obez</string>
+    <string name="obez_ustu">obez_ustu</string>
+
 </resources>

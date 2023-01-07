@@ -45,6 +45,14 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(chronometreIntent);
                 break;
 
+            case R.id.adminMenuVkiId:
+                Toast.makeText(this, "VKI Tıklandı", Toast.LENGTH_SHORT).show();
+                Intent vkiIntent = new Intent(getApplicationContext(), VkiActivity.class);
+                //Toast'a String bir ifade göndermek istersek
+                Toast.makeText(AdminActivity.this, "VKI", Toast.LENGTH_SHORT).show();
+                startActivity(vkiIntent);
+                break;
+
 
             case R.id.adminMenuLogoutId:
                 Toast.makeText(this, "Logout Tıklandı", Toast.LENGTH_SHORT).show();

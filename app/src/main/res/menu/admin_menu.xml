@@ -17,6 +17,10 @@
         android:title="Kronometre"/>
 
     <item
+        android:id="@+id/adminMenuVkiId"
+        android:title="Vucut Kitle Index"/>
+
+    <item
         android:id="@+id/adminMenuLogoutId"
         android:title="Çıkış"/>
 </menu>
