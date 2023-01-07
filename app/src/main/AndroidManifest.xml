@@ -21,6 +21,13 @@
         android:theme="@style/Theme.PeerToPeerMessage"
         tools:targetApi="31">
         <activity
+            android:name=".Chronometre"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".TelephoneValidation"
             android:exported="false">
             <meta-data

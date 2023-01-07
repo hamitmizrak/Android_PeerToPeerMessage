@@ -13,6 +13,10 @@
     android:title="Ayarlar"/>
 
     <item
+        android:id="@+id/adminMenuChronometreId"
+        android:title="Kronometre"/>
+
+    <item
         android:id="@+id/adminMenuLogoutId"
         android:title="Çıkış"/>
 </menu>

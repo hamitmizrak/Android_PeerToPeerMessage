@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,15 @@ public class AdminActivity extends AppCompatActivity {
 
             case R.id.adminMenuSettingId:
                 Toast.makeText(this, "Ayarlar Tıklandı", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case R.id.adminMenuChronometreId:
+                Toast.makeText(this, "Kronometre Tıklandı", Toast.LENGTH_SHORT).show();
+                Intent chronometreIntent = new Intent(getApplicationContext(), Chronometre.class);
+                //Toast'a String bir ifade göndermek istersek
+                Toast.makeText(AdminActivity.this, "Kronometre", Toast.LENGTH_SHORT).show();
+                startActivity(chronometreIntent);
                 break;
 
 
