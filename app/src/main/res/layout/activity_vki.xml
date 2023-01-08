@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/coffee"
+    android:background="@color/black"
     android:orientation="horizontal"
     android:padding="25dp"
     android:useDefaultMargins="true"
+    android:columnCount="2"
     tools:context=".VkiActivity">
 
+    <!-- 1.Satır -->
     <TextView
         android:id="@+id/textViewVkiKiloId"
         android:layout_width="wrap_content"
@@ -20,4 +22,110 @@
         android:textColor="@color/white"
         android:layout_gravity="center_vertical|left"/>
 
+    <SeekBar
+        android:id="@+id/seekBarVkiId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:progress="25"/>
+
+    <!-- 2.Satır -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:text="@string/boy"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical|left"/>
+
+    <EditText
+        android:id="@+id/editTextVki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:maxLength="3"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:digits="0123456789">
+        <requestFocus/>
+    </EditText>
+
+
+    <!-- 4.Satır -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:text="@string/cinsiyet"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical|left"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupVkiId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:maxLength="3"
+        android:layout_gravity="fill_horizontal"
+       android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/bay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bay"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/bayan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bayan"/>
+    </RadioGroup>
+
+
+    <!-- 5.Satır -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:text="@string/ideal"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical|left"/>
+
+    <TextView
+        android:id="@+id/textVkiIdealId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:text=""
+        android:textColor="@color/white"
+        android:layout_gravity="fill_horizontal"/>
+
+    <!-- 6.Satır -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:text="@string/sonuc"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical|left"/>
+
+    <TextView
+        android:id="@+id/textVkiDurumId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:textColor="@color/white"
+        android:layout_gravity="fill_horizontal"
+        />
+    <Space/>
 </GridLayout>
