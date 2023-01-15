@@ -13,9 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginTop="90dp"
+        android:background="@color/normalden_fazla"
         android:hint="Telefonu numaranız +90 xxxyyyzzmm"
-        android:textColor="#ffffff"
-        android:paddingTop="15dp"/>
+        android:paddingTop="15dp"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/phoneCodeEditTextId"
@@ -23,12 +24,14 @@
         android:layout_height="110dp"
         android:layout_marginTop="20dp"
         android:hint="TDoğrulama kodunuz"
+        android:background="@color/normalden_fazla"
         android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/confirmationButtonId"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
         android:text="Gönder"
         />
 
