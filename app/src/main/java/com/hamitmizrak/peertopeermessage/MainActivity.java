@@ -1,6 +1,9 @@
 package com.hamitmizrak.peertopeermessage;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,14 +27,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.net.Inet4Address;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     //global variable
-
     private CircleImageView main_button_telephone;
+
+    private static final String linkedinUrl="https://tr.linkedin.com/";
+    //private CircleImageView socialLinkedinId;
 
     //email password
     private EditText main_editText_email;
@@ -114,6 +118,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //start codes
+
+        CircleImageView socialLinkedinId =findViewById(R.id.socialLinkedinId);
+        socialLinkedinId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Alert dialog");
+                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Application Out");
+                builder.setMessage("Uygulama dışına çıkılacaktır izin veriyor musunuz");
+                builder.setNegativeButton("Hayır",null);
+                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent browserRedirect=new Intent(Intent.ACTION_VIEW, Uri.parse(linkedinUrl));
+                        startActivity(browserRedirect);
+                    }
+                });
+                builder.show();
+            }
+        });
+
+
 
         //id almak
         main_editText_email = findViewById(R.id.main_editText_email);
@@ -217,5 +243,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(registerIntent);
             } //end onClick
         }); //end  main_button_register
+
+
+
     } //ends codes
 }// class MainActivity
