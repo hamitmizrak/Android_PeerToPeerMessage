@@ -110,14 +110,11 @@ public class AdminActivity extends AppCompatActivity {
         switch (menuChooiseItem) {
 
             case R.id.adminMenuRefleshId:
-                Toast.makeText(this, "Reflesh Tıklandı", Toast.LENGTH_SHORT).show();
-                Intent intentReflesh=new Intent(AdminActivity.this,AdminActivity.class);
-                startActivity(intentReflesh);
-               /* if(firebaseUser!=null){
+                if(firebaseUser!=null){
                     Toast.makeText(this, "Reflesh Tıklandı", Toast.LENGTH_SHORT).show();
                     Intent intentReflesh=new Intent(AdminActivity.this,AdminActivity.class);
                     startActivity(intentReflesh);
-                }*/
+                }
                 break;
 
             case R.id.adminMenuSettingId:

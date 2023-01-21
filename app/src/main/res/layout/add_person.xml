@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--circle image view-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/main_circleImageView_profile"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/person"/>
+
+    <TextView
+        android:id="@+id/textViewAddPerson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kişi ekle"
+        android:textSize="26dp"
+        android:layout_gravity="center"
+        android:textAllCaps="true"
+        android:layout_marginTop="15dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="Kullanıcı ekle"
+        app:endIconMode="password_toggle"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="22dp"
+        app:boxCornerRadiusBottomStart="22dp"
+        app:boxCornerRadiusTopEnd="22dp"
+        app:boxCornerRadiusTopStart="22dp"
+        app:endIconTint="#0000fa">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAddPersonMailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonAddPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Kullanıcı Ekle"/>
+
+
+</LinearLayout>
