@@ -13,6 +13,14 @@
     android:title="Ayarlar"/>
 
     <item
+        android:id="@+id/adminMenuPersonId"
+        android:title="Kişi Ekle"/>
+
+    <item
+        android:id="@+id/adminMenuPictureId"
+        android:title="Resimler"/>
+
+    <item
         android:id="@+id/adminMenuChronometreId"
         android:title="Kronometre"/>
 

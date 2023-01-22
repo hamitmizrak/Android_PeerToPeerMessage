@@ -5,15 +5,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +36,15 @@ import com.google.firebase.storage.UploadTask;
 public class AdminActivity extends AppCompatActivity {
     //global variable
     private Toolbar myToolBarId;
+
+    private String addPersonEmail;
+    private Handler mHandler;
+
+    //Google SignIn
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient gsc;
+    private TextView nameGoogleLoginID, emailGoogleLoginId;
+    private Button signOutButtonId;
 
     //Firebase User
     private FirebaseUser firebaseUser;
@@ -61,7 +78,19 @@ public class AdminActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         //Firebase kullanıcıyı çıkarmak
-        //firebaseAuth.removeAuthStateListener(authStateListener);
+        firebaseAuth.removeAuthStateListener(authStateListener);
+    }
+
+    //Google SignIn
+    private void signOutMethod() {
+        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                finish();
+                //güvenli çıkış sonrasında ana menuye git
+                startActivity(new Intent(AdminActivity.this, MainActivity.class));
+            }
+        });
     }
 
     //Resim için
@@ -104,21 +133,65 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //sistemde bir kullanıcı var mı
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         int menuChooiseItem = item.getItemId();
         switch (menuChooiseItem) {
-
             case R.id.adminMenuRefleshId:
-                if(firebaseUser!=null){
+                if (firebaseUser != null) {
                     Toast.makeText(this, "Reflesh Tıklandı", Toast.LENGTH_SHORT).show();
-                    Intent intentReflesh=new Intent(AdminActivity.this,AdminActivity.class);
+                    Intent intentReflesh = new Intent(AdminActivity.this, AdminActivity.class);
                     startActivity(intentReflesh);
                 }
                 break;
 
             case R.id.adminMenuSettingId:
                 Toast.makeText(this, "Ayarlar Tıklandı", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.adminMenuPictureId:
+                Toast.makeText(this, "Resim ekleme Tıklandı", Toast.LENGTH_SHORT).show();
+                Intent allPictures = new Intent(Intent.ACTION_PICK);
+                allPictures.setType("image/*");
+                startActivityForResult(allPictures, PICTURE_CONST);
+
+                //resim yüklendikten sonra database kaydetsin
+                userReferances = databaseReference.child(firebaseAuth.getCurrentUser().getUid().toString());
+                //UID
+                mailReferances = userReferances.child("mail_adresim");
+                mailReferances.setValue(firebaseAuth.getCurrentUser().getEmail());
+                imageReferances = userReferances.child("resimim");
+                break;
+
+            case R.id.adminMenuPersonId:
+                Toast.makeText(this, "Kişi ekle", Toast.LENGTH_SHORT).show();
+
+                //Alert Dialog
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                //Custom Dialog
+                View view = getLayoutInflater().inflate(R.layout.add_person, null);
+                alertDialogBuilder.setView(view);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+                //add person.xml
+                EditText editTextAddPErsonMailId = view.findViewById(R.id.editTextAddPersonMailId);
+                Button buttonAddPerson = view.findViewById(R.id.buttonAddPerson);
+
+                //Csutom Dialog Button Clicked
+                buttonAddPerson.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!editTextAddPErsonMailId.getText().toString().isEmpty()) {
+                            addPersonEmail = editTextAddPErsonMailId.getText().toString();
+                            editTextAddPErsonMailId.setText("");
+                            alertDialog.hide();
+
+                            //Sorgu Fireabase select
+                        }
+                    }
+                });
+
                 break;
 
 
@@ -141,13 +214,13 @@ public class AdminActivity extends AppCompatActivity {
 
             case R.id.adminMenuInfoId:
 
-                StringBuilder stringBuilder=new StringBuilder();
+                StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder
-                        .append("Model: "+ Build.MODEL)
-                        .append(" Üretici Firma: "+Build.MANUFACTURER)
-                        .append(" Mac Address:  "+Build.VERSION.SDK_INT);
-                String data=stringBuilder.toString();
-                Toast.makeText(this, "Info: "+data, Toast.LENGTH_LONG).show();
+                        .append("Model: " + Build.MODEL)
+                        .append(" Üretici Firma: " + Build.MANUFACTURER)
+                        .append(" Mac Address:  " + Build.VERSION.SDK_INT);
+                String data = stringBuilder.toString();
+                Toast.makeText(this, "Info: " + data, Toast.LENGTH_LONG).show();
                 break;
 
 
@@ -168,10 +241,6 @@ public class AdminActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Google SignIn
-    public void signOutMethod(){
-        //
-    }
 
     //ONCREATE
     @Override
@@ -185,19 +254,19 @@ public class AdminActivity extends AppCompatActivity {
         myToolBarId.setLogo(R.drawable.logo);
         setSupportActionBar(myToolBarId);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseUser=firebaseAuth.getInstance().getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference("users");
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        userEmailAddressId=findViewById(R.id.userEmailAddressId);
+        userEmailAddressId = findViewById(R.id.userEmailAddressId);
 
         //anasayfada kullanıcı mailini göstermek
-        if(firebaseUser!=null){
-            String email=firebaseAuth.getCurrentUser().getEmail();
-            String name=firebaseAuth.getCurrentUser().getDisplayName();
+        if (firebaseUser != null) {
+            String email = firebaseAuth.getCurrentUser().getEmail();
+            String name = firebaseAuth.getCurrentUser().getDisplayName();
             userEmailAddressId.setText(email);
         }
-        storageReference= FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
     }//end
 } // AdminActivity
