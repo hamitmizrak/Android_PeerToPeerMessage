@@ -151,22 +151,6 @@ public class AdminActivity extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.adminMenuWifiId:
-                 final ToggleButton toggleButton=(ToggleButton)findViewById(R.id.toggleButtonWifi);
-                toggleButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(toggleButton.isChecked()){
-                            Toast.makeText(AdminActivity.this, "Açıldı", Toast.LENGTH_SHORT).show();
-                            wifiOpen();
-                        }else{
-                            Toast.makeText(AdminActivity.this, "Kapatıldı", Toast.LENGTH_SHORT).show();
-
-                            wifiClose();
-                        }
-                    }
-                });
-                break;
 
             case R.id.adminMenuPictureId:
                 Toast.makeText(this, "Resim ekleme Tıklandı", Toast.LENGTH_SHORT).show();

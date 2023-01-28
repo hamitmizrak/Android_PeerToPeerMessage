@@ -8,9 +8,6 @@
         android:orderInCategory="90"
         app:showAsAction="ifRoom"/>
 
-    <item
-    android:id="@+id/adminMenuWifiId"
-    android:title="Wifi"/>
 
     <item
         android:id="@+id/adminMenuPersonId"
