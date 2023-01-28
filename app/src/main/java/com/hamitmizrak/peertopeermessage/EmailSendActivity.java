@@ -2,6 +2,7 @@ package com.hamitmizrak.peertopeermessage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,17 @@ public class EmailSendActivity extends AppCompatActivity {
                 getTextEmailSubjectId=editTextEmailSubjectId.getText().toString();
                 getTextContentId=editTextContentId.getText().toString();
                 Toast.makeText(EmailSendActivity.this, getTextWhoEmailId+" "+getTextEmailSubjectId+" "+getTextContentId, Toast.LENGTH_LONG).show();
+
+
+                //Intent
+                Intent intentMail=new Intent(Intent.ACTION_SEND);
+                intentMail.putExtra(Intent.EXTRA_EMAIL,new String[]{getTextWhoEmailId});
+                intentMail.putExtra(Intent.EXTRA_SUBJECT,getTextEmailSubjectId);
+                intentMail.putExtra(Intent.EXTRA_TEXT,getTextContentId);
+
+                //setType
+                intentMail.setType("message/rfc822");
+                startActivity(Intent.createChooser(intentMail,"Seçim: Email Client end"));
             }
         });
 
