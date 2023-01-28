@@ -33,6 +33,10 @@
         android:title="Sistem Bilgileri"/>
 
     <item
+        android:id="@+id/adminMenuMailSendId"
+        android:title="Mail bilgileri"/>
+
+    <item
         android:id="@+id/adminMenuLogoutId"
         android:title="Çıkış"/>
 </menu>

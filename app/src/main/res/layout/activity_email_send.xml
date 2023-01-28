@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmailSendActivity">
+
+    <!--Kime-->
+    <EditText
+        android:id="@+id/editTextWhoEmailId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/editTextWhoEmailId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="@id/editTextWhoEmailId"
+        android:text="KİME: "
+        android:textColor="#000000" />
+
+    <!--Konu-->
+    <EditText
+        android:id="@+id/editTextEmailSubjectId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextWhoEmailId"
+        android:layout_alignLeft="@id/editTextWhoEmailId"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextEmailSubjectId"
+        android:layout_alignBottom="@+id/editTextEmailSubjectId"
+        android:text="KONU"
+        android:textColor="@color/black" />
+
+    <!-- İçerik-->
+    <EditText
+        android:id="@+id/editTextContentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextEmailSubjectId"
+        android:layout_alignLeft="@id/editTextEmailSubjectId"
+        android:layout_marginTop="25dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextContentId"
+        android:layout_alignBaseline="@+id/editTextContentId"
+        android:layout_alignBottom="@+id/editTextEmailSubjectId"
+        android:text="IÇERİK"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextContentId"
+        android:layout_alignLeft="@id/editTextContentId"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/submit"/>
+
+</RelativeLayout>

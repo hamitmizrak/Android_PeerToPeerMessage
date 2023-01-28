@@ -213,7 +213,6 @@ public class AdminActivity extends AppCompatActivity {
                 });
                 break;
 
-
             case R.id.adminMenuChronometreId:
                 Toast.makeText(this, "Kronometre Tıklandı", Toast.LENGTH_SHORT).show();
                 Intent chronometreIntent = new Intent(getApplicationContext(), Chronometre.class);
@@ -230,7 +229,6 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(vkiIntent);
                 break;
 
-
             case R.id.adminMenuInfoId:
 
                 StringBuilder stringBuilder = new StringBuilder();
@@ -242,7 +240,6 @@ public class AdminActivity extends AppCompatActivity {
                 Toast.makeText(this, "Info: " + data, Toast.LENGTH_LONG).show();
                 break;
 
-
             case R.id.adminMenuLogoutId:
                 Toast.makeText(this, "Logout Tıklandı", Toast.LENGTH_SHORT).show();
                 if (firebaseUser != null) {
@@ -251,6 +248,12 @@ public class AdminActivity extends AppCompatActivity {
                     Intent intentHome = new Intent(AdminActivity.this, MainActivity.class);
                     startActivity(intentHome);
                 }
+                break;
+
+            case R.id.adminMenuMailSendId:
+                Toast.makeText(this, "Mail Alanı Tıklandı", Toast.LENGTH_SHORT).show();
+                Intent emailIntent=new Intent(AdminActivity.this,EmailSendActivity.class);
+                startActivity(emailIntent);
                 break;
 
             default:
