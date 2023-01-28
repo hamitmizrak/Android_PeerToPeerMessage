@@ -30,6 +30,7 @@
                 android:layout_marginTop="20dp"
                 android:src="@drawable/person"/>
 
+
             <TextView
                 android:id="@+id/userEmailAddressId"
                 android:layout_width="match_parent"
@@ -52,6 +53,14 @@
                 android:text="Google Çıkış"
                 android:layout_marginTop="200dp"
                 />
+
+            <ToggleButton
+                android:id="@+id/toggleButtonWifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="350dp"
+                />
+
 
         </RelativeLayout>
     </ScrollView>

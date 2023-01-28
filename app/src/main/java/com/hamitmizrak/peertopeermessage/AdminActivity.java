@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -144,8 +145,8 @@ public class AdminActivity extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.adminMenuSettingId:
-                Toast.makeText(this, "Ayarlar Tıklandı", Toast.LENGTH_SHORT).show();
+            case R.id.adminMenuWifiId:
+                Toast.makeText(this, "WIFI Tıklandı", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.adminMenuPictureId:
@@ -247,6 +248,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
         //start
         myToolBarId = findViewById(R.id.myToolBarId);
         myToolBarId.setTitle("Admin Page");
@@ -267,6 +269,9 @@ public class AdminActivity extends AppCompatActivity {
             userEmailAddressId.setText(email);
         }
         storageReference = FirebaseStorage.getInstance().getReference();
+
+        //Full Screen
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     }//end
 } // AdminActivity
