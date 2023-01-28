@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -37,6 +40,9 @@ import com.google.firebase.storage.UploadTask;
 public class AdminActivity extends AppCompatActivity {
     //global variable
     private Toolbar myToolBarId;
+
+    //Wifi
+    private WifiManager wifiManager=null;
 
     private String addPersonEmail;
     private Handler mHandler;
@@ -146,7 +152,20 @@ public class AdminActivity extends AppCompatActivity {
                 break;
 
             case R.id.adminMenuWifiId:
-                Toast.makeText(this, "WIFI Tıklandı", Toast.LENGTH_SHORT).show();
+                 final ToggleButton toggleButton=(ToggleButton)findViewById(R.id.toggleButtonWifi);
+                toggleButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(toggleButton.isChecked()){
+                            Toast.makeText(AdminActivity.this, "Açıldı", Toast.LENGTH_SHORT).show();
+                            wifiOpen();
+                        }else{
+                            Toast.makeText(AdminActivity.this, "Kapatıldı", Toast.LENGTH_SHORT).show();
+
+                            wifiClose();
+                        }
+                    }
+                });
                 break;
 
             case R.id.adminMenuPictureId:
@@ -192,7 +211,6 @@ public class AdminActivity extends AppCompatActivity {
                         }
                     }
                 });
-
                 break;
 
 
@@ -242,6 +260,26 @@ public class AdminActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // wifi Aç
+    private void wifiOpen(){
+        wifiManager= (WifiManager) getSystemService(getApplicationContext().WIFI_SERVICE);
+        if(wifiManager.getWifiState()==WifiManager.WIFI_STATE_DISABLED){
+            wifiManager.setWifiEnabled(true);
+        }else if(wifiManager.getWifiState()==WifiManager.WIFI_STATE_ENABLING){
+            Toast.makeText(this, "Wifi Zaten Açık", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // wifi Kapat
+    private void wifiClose(){
+        wifiManager= (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        if(wifiManager.getWifiState()==WifiManager.WIFI_STATE_ENABLED){
+            wifiManager.setWifiEnabled(false);
+        }else if(wifiManager.getWifiState()==WifiManager.WIFI_STATE_DISABLING){
+            Toast.makeText(this, "Wifi Zaten Kapalı", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     //ONCREATE
     @Override
@@ -272,6 +310,19 @@ public class AdminActivity extends AppCompatActivity {
 
         //Full Screen
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //Wifi Open Close
+        final ToggleButton toggleButton=(ToggleButton)findViewById(R.id.toggleButtonWifi);
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(toggleButton.isChecked()){
+                    wifiOpen();
+                }else{
+                    wifiClose();
+                }
+            }
+        });
 
     }//end
 } // AdminActivity
