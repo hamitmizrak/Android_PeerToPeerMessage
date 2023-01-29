@@ -32,6 +32,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     //global variable
+
+    //remember password
+    private TextView buttonForgotPassword;
+
+
     private CircleImageView main_button_telephone;
 
     private static final String linkedinUrl="https://tr.linkedin.com/";
@@ -139,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         //id almak
         main_editText_email = findViewById(R.id.main_editText_email);
         main_editText_password = findViewById(R.id.main_editText_password);
@@ -231,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
             }//end click
         }); //end setOnClickListener
 
-
         //telephone Validation
         main_button_telephone=findViewById(R.id.main_button_telephone);
         main_button_telephone.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +246,8 @@ public class MainActivity extends AppCompatActivity {
             } //end onClick
         }); //end  main_button_register
 
-
+        //forgot password
+        buttonForgotPassword=findViewById(R.id.buttonForgotPassword);
 
     } //ends codes
 }// class MainActivity
