@@ -220,15 +220,12 @@ public class MainActivity extends AppCompatActivity {
                 if (userPassword.isEmpty() || userPassword.equals("")||userPassword==null) {
                     Toast.makeText(MainActivity.this, "Lütfen password boş geçmeyiniz", Toast.LENGTH_SHORT).show();
                 }
-
                 if (userEmailAddress.isEmpty() || userEmailAddress.equals("")||userEmailAddress==null) {
                     Toast.makeText(MainActivity.this, "Lütfen email boş geçmeyiniz", Toast.LENGTH_SHORT).show();
                 }
-
                 if(!validatePassword(userPassword)  || !validateEmail(userEmailAddress)){
                     return;
                 }
-
                     //sisteme giriş dinliyoruz.
                     firebaseAuth.signInWithEmailAndPassword(userEmailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         //eğer sisteme giriş başarılıysa admin sayfasına yönlendir.
@@ -241,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(adminIntent);
                             }else{
                                 Toast.makeText(MainActivity.this, "Kullanıcı olmadığından Yönlendilmedi", Toast.LENGTH_SHORT).show();
-
                             }
                         }
                         //eğer siteme giriş yaparken herhangi bir hata alırsam. örneğin: internet olmayabilir. sistemde kullanıcı olmayabilir
