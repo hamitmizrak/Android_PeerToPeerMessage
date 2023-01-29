@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CircleImageView main_button_telephone;
 
+    //linkedin URL
     private static final String linkedinUrl = "https://tr.linkedin.com/";
     //private CircleImageView socialLinkedinId;
 
@@ -116,6 +117,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Validation Email
+    private Boolean validateEmail(String value) {
+        String emailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if (value.isEmpty()) {
+            main_editText_email.setError("Mail Boş geçilemez");
+            return false;
+        } else if (!value.matches(emailPattern)) {
+            main_editText_email.setError("Mail Uygun formatta girelim");
+            return false;
+        } else {
+            main_editText_email.setError(null);
+            return true;
+        }
+    } //end validateEmail
+
+    //Validation Password
+    //Hm123456@
+    private Boolean validatePassword(String value) {
+        String passwordVal = "^" +
+                "(?=.*[0-9])" +           // En az 1 tane sayı
+                "(?=.*[a-z])" +            // en az 1 tane küçük harf
+                "(?=.*[A-Z])" +            // en az 1 tane büyük harf
+                "(?=.*[@#$%^&+=])" +     // at least 1 special character
+                "(?=\\S+$)" +            // no white spaces
+                ".{4,}" +                // at least 4 characters
+                "$";
+        if(value.isEmpty()){
+            main_editText_password.setError("Şifre Boş geçilemez");
+            return false;
+        } else if (!value.matches(passwordVal)) {
+            main_editText_password.setError("Şifre Uygun formatta girelim");
+            return false;
+        } else {
+            main_editText_password.setError(null);
+            return true;
+        }
+    } //end validatePassword
 
     //ONCREATE
     @Override
@@ -179,27 +217,40 @@ public class MainActivity extends AppCompatActivity {
                 userPassword = main_editText_password.getText().toString();
 
                 //input validation
-                if (userPassword == null || userPassword.equals("") || userEmailAddress == null || userEmailAddress.equals("")) {
-                    Toast.makeText(MainActivity.this, "Lütfen  boş geçmeyiniz", Toast.LENGTH_SHORT).show();
-                } else {
+                if (userPassword.isEmpty() || userPassword.equals("")||userPassword==null) {
+                    Toast.makeText(MainActivity.this, "Lütfen password boş geçmeyiniz", Toast.LENGTH_SHORT).show();
+                }
+
+                if (userEmailAddress.isEmpty() || userEmailAddress.equals("")||userEmailAddress==null) {
+                    Toast.makeText(MainActivity.this, "Lütfen email boş geçmeyiniz", Toast.LENGTH_SHORT).show();
+                }
+
+                if(!validatePassword(userPassword)  || !validateEmail(userEmailAddress)){
+                    return;
+                }
+
                     //sisteme giriş dinliyoruz.
                     firebaseAuth.signInWithEmailAndPassword(userEmailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         //eğer sisteme giriş başarılıysa admin sayfasına yönlendir.
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Intent adminIntent = new Intent(getApplicationContext(), AdminActivity.class);
-                            //Toast'a String bir ifade göndermek istersek
-                            Toast.makeText(MainActivity.this, getString(R.string.admin_redirect), Toast.LENGTH_SHORT).show();
-                            startActivity(adminIntent);
+                            if (firebaseUser != null) {
+                                Intent adminIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                                //Toast'a String bir ifade göndermek istersek
+                                Toast.makeText(MainActivity.this, getString(R.string.admin_redirect), Toast.LENGTH_SHORT).show();
+                                startActivity(adminIntent);
+                            }else{
+                                Toast.makeText(MainActivity.this, "Kullanıcı olmadığından Yönlendilmedi", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
-                        //eğer ssiteme giriş yaparken herhangi bir hata alırsam. örneğin: internet olmayabilir. sistemde kullanıcı olmayabilir
+                        //eğer siteme giriş yaparken herhangi bir hata alırsam. örneğin: internet olmayabilir. sistemde kullanıcı olmayabilir
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(MainActivity.this, getString(R.string.admin_faile), Toast.LENGTH_SHORT).show();
                         }// end  onFailure
                     }); // end addOnFailureListener
-                }// end else
             }// end onClick
         });// end setOnClickListener
 
@@ -262,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 passwordResetDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String mail=resetMail.getText().toString();
+                        String mail = resetMail.getText().toString();
                         firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
