@@ -83,22 +83,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Google Sign in
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
-    CircleImageView main_button_googlesign;
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient gsc;
+    private CircleImageView main_button_googlesign;
 
-    //signInMEthod
+    //signInMethod
     private void signInMethod() {
         Intent googleSignIntent = gsc.getSignInIntent();
         //requestCode eşleme
         startActivityForResult(googleSignIntent, 2344);
-    }
-
-    //navigateToAdminActivity
-    private void navigateToAdminActivity() {
-        finish();
-        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-        startActivity(intent);
     }
 
     //eğer google giriş başarılı ise AdminActict gitsin
@@ -117,9 +110,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //google giriş navigateToAdminActivity
+    private void navigateToAdminActivity() {
+        finish();
+        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+        startActivity(intent);
+    }
+
+
     //Validation Email
     private Boolean validateEmail(String value) {
-        String emailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (value.isEmpty()) {
             main_editText_email.setError("Mail Boş geçilemez");
             return false;
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 "(?=\\S+$)" +            // no white spaces
                 ".{4,}" +                // at least 4 characters
                 "$";
-        if(value.isEmpty()){
+        if (value.isEmpty()) {
             main_editText_password.setError("Şifre Boş geçilemez");
             return false;
         } else if (!value.matches(passwordVal)) {
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //start codes
 
+        //Linkedin
         CircleImageView socialLinkedinId = findViewById(R.id.socialLinkedinId);
         socialLinkedinId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         //Firebase Instance
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //Kullanıcı Sisteme giriş yapmış mı?
+        //Kullanıcı Login Sisteme giriş yapmış mı?
         // Eğer sistemde bir kullanıcı giriş yapmışsa ADmin sayfasına yönlendirsin
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -217,36 +219,36 @@ public class MainActivity extends AppCompatActivity {
                 userPassword = main_editText_password.getText().toString();
 
                 //input validation
-                if (userPassword.isEmpty() || userPassword.equals("")||userPassword==null) {
+                if (userPassword.isEmpty() || userPassword.equals("") || userPassword == null) {
                     Toast.makeText(MainActivity.this, "Lütfen password boş geçmeyiniz", Toast.LENGTH_SHORT).show();
                 }
-                if (userEmailAddress.isEmpty() || userEmailAddress.equals("")||userEmailAddress==null) {
+                if (userEmailAddress.isEmpty() || userEmailAddress.equals("") || userEmailAddress == null) {
                     Toast.makeText(MainActivity.this, "Lütfen email boş geçmeyiniz", Toast.LENGTH_SHORT).show();
                 }
-                if(!validatePassword(userPassword)  || !validateEmail(userEmailAddress)){
+                if (!validatePassword(userPassword) || !validateEmail(userEmailAddress)) {
                     return;
                 }
-                    //sisteme giriş dinliyoruz.
-                    firebaseAuth.signInWithEmailAndPassword(userEmailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        //eğer sisteme giriş başarılıysa admin sayfasına yönlendir.
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (firebaseUser != null) {
-                                Intent adminIntent = new Intent(getApplicationContext(), AdminActivity.class);
-                                //Toast'a String bir ifade göndermek istersek
-                                Toast.makeText(MainActivity.this, getString(R.string.admin_redirect), Toast.LENGTH_SHORT).show();
-                                startActivity(adminIntent);
-                            }else{
-                                Toast.makeText(MainActivity.this, "Kullanıcı olmadığından Yönlendilmedi", Toast.LENGTH_SHORT).show();
-                            }
+                //sisteme giriş dinliyoruz.
+                firebaseAuth.signInWithEmailAndPassword(userEmailAddress, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    //eğer sisteme giriş başarılıysa admin sayfasına yönlendir.
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (firebaseUser != null) {
+                            Intent adminIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                            //Toast'a String bir ifade göndermek istersek
+                            Toast.makeText(MainActivity.this, getString(R.string.admin_redirect), Toast.LENGTH_SHORT).show();
+                            startActivity(adminIntent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Kullanıcı olmadığından Yönlendilmedi", Toast.LENGTH_SHORT).show();
                         }
-                        //eğer siteme giriş yaparken herhangi bir hata alırsam. örneğin: internet olmayabilir. sistemde kullanıcı olmayabilir
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MainActivity.this, getString(R.string.admin_faile), Toast.LENGTH_SHORT).show();
-                        }// end  onFailure
-                    }); // end addOnFailureListener
+                    }
+                    //eğer siteme giriş yaparken herhangi bir hata alırsam. örneğin: internet olmayabilir. sistemde kullanıcı olmayabilir
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, getString(R.string.admin_faile), Toast.LENGTH_SHORT).show();
+                    }// end  onFailure
+                }); // end addOnFailureListener
             }// end onClick
         });// end setOnClickListener
 
@@ -262,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         }); //end  main_button_register
 
         //+++++++++++++
-        //Google Login
+        //Google SignIN(Login)
         main_button_googlesign = findViewById(R.id.main_button_googlesign);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
@@ -273,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
             navigateToAdminActivity();
         }
 
+        //Google SignIN(Login)
         // main_button_googlesign setOnClick Listener
         main_button_googlesign.setOnClickListener(new View.OnClickListener() {
             @Override

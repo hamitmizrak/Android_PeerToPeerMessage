@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +52,7 @@ public class AdminActivity extends AppCompatActivity {
     //Google SignIn
     private GoogleSignInOptions gso;
     private GoogleSignInClient gsc;
-    private TextView nameGoogleLoginID, emailGoogleLoginId;
+    private TextView nameGoogleLoginId, emailGoogleLoginId;
     private Button signOutButtonId;
 
     //Firebase User
@@ -273,7 +275,6 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         //start
         myToolBarId = findViewById(R.id.myToolBarId);
         myToolBarId.setTitle("Admin Page");
@@ -308,6 +309,26 @@ public class AdminActivity extends AppCompatActivity {
                 }else{
                     wifiClose();
                 }
+            }
+        });
+
+        //Google Sign In
+        signOutButtonId=findViewById(R.id.signOutButtonId);
+        emailGoogleLoginId=findViewById(R.id.userEmailAddressId);
+        gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc= GoogleSignIn.getClient(this,gso);
+        signOutButtonId.setVisibility(View.INVISIBLE);
+        GoogleSignInAccount googleSignInAccount=GoogleSignIn.getLastSignedInAccount(this);
+        if(googleSignInAccount!=null){
+            String email=googleSignInAccount.getEmail();
+            emailGoogleLoginId.setText(email);
+            signOutButtonId.setVisibility(View.VISIBLE);
+        }
+        signOutButtonId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AdminActivity.this, "Google Çıkışı yapıldı", Toast.LENGTH_SHORT).show();
+                signOutMethod();
             }
         });
 
