@@ -22,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
     //remember password
     private TextView buttonForgotPassword;
 
-
     private CircleImageView main_button_telephone;
 
-    private static final String linkedinUrl="https://tr.linkedin.com/";
+    private static final String linkedinUrl = "https://tr.linkedin.com/";
     //private CircleImageView socialLinkedinId;
 
     //email password
@@ -124,19 +124,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //start codes
 
-        CircleImageView socialLinkedinId =findViewById(R.id.socialLinkedinId);
+        CircleImageView socialLinkedinId = findViewById(R.id.socialLinkedinId);
         socialLinkedinId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Alert dialog");
-                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Application Out");
                 builder.setMessage("Uygulama dışına çıkılacaktır izin veriyor musunuz");
-                builder.setNegativeButton("Hayır",null);
+                builder.setNegativeButton("Hayır", null);
                 builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent browserRedirect=new Intent(Intent.ACTION_VIEW, Uri.parse(linkedinUrl));
+                        Intent browserRedirect = new Intent(Intent.ACTION_VIEW, Uri.parse(linkedinUrl));
                         startActivity(browserRedirect);
                     }
                 });
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         }); //end setOnClickListener
 
         //telephone Validation
-        main_button_telephone=findViewById(R.id.main_button_telephone);
+        main_button_telephone = findViewById(R.id.main_button_telephone);
         main_button_telephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -247,7 +247,46 @@ public class MainActivity extends AppCompatActivity {
         }); //end  main_button_register
 
         //forgot password
-        buttonForgotPassword=findViewById(R.id.buttonForgotPassword);
+        buttonForgotPassword = findViewById(R.id.buttonForgotPassword);
+        buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Mail gönderimini sağlayacak kodlar
+                EditText resetMail = new EditText(view.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());
+                passwordResetDialog.setTitle("Şifreyi Gerçekten Değiştirmek istiyor musunuz? ");
+                passwordResetDialog.setMessage("Mail adresinizi giriniz ");
+                passwordResetDialog.setView(resetMail);
+
+                //Evet
+                passwordResetDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String mail=resetMail.getText().toString();
+                        firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(MainActivity.this, "Mailiniz Gönderildi.", Toast.LENGTH_SHORT).show();
+                            }//end onSuccess
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Mailinizi gönderilemedi !!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }); // end addOnFailureListener
+                    } // end onClick
+                }); //end passwordResetDialog.setPositiveButton
+
+                //Hayır
+                passwordResetDialog.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, "Hayıra tıklandı vazgeçildi.", Toast.LENGTH_SHORT).show();
+                    }//end onClick
+                }); //end setNegativeButton
+                passwordResetDialog.create().show();
+            }//end onClick
+        }); //end  buttonForgotPassword.setOnClickListener
 
     } //ends codes
 }// class MainActivity
